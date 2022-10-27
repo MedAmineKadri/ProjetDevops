@@ -6,7 +6,7 @@ pipeline{
 
         stage('Cloning from GitHub') {
                 steps {
-                    git branch: 'samar', url: 'https://github.com/trifieya/Continuous-integration-project.git'
+                    git branch: 'yassine', url: 'https://github.com/MedAmineKadri/ProjetDevops.git'
                 }
                 
             }
@@ -17,12 +17,24 @@ pipeline{
             }
             
         }
+        
         stage('Compile'){
             steps {
                 sh 'mvn compile -DskipTests'
             }
             
         }
+        stage('SonarQube Analysis'){
+                steps {
+                    sh """mvn sonar:sonar -DskipTests \
+                            -Dsonar.language=java 
+                           
+                            
+                    """
+                }
+                
+            }
+        
         
         
          stage('UNIT test'){
