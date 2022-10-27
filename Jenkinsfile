@@ -6,7 +6,7 @@ pipeline{
 
         stage('Cloning from GitHub') {
                 steps {
-                    git branch: 'yassine', url: 'https://github.com/MedAmineKadri/ProjetDevops.git'
+                    git branch: 'samar', url: 'https://github.com/trifieya/Continuous-integration-project.git'
                 }
                 
             }
