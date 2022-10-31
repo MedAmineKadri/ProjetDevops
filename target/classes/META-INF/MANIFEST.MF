@@ -4,6 +4,6 @@ Build-Jdk: 16.0.2
 Implementation-Title: achat
 Implementation-Version: 1.0
 Implementation-Vendor-Id: tn.esprit.rh
-Implementation-URL: https://spring.io/projects/spring-boot/achat
+Implementation-URL: https://spring.io/projects/spring-boot/achatproject
 Created-By: Maven Integration for Eclipse
 
