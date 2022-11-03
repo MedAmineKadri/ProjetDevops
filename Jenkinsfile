@@ -6,7 +6,7 @@ pipeline{
 
         stage('Cloning from GitHub') {
                 steps {
-                    git branch: 'yassine', url: 'https://github.com/MedAmineKadri/ProjetDevops.git'
+                    git branch: 'Yassine', url: 'https://github.com/MedAmineKadri/ProjetDevops.git'
                 }
                 
             }
@@ -37,21 +37,21 @@ pipeline{
         
         
         
-         stage('UNIT test'){
+     /*    stage('UNIT test'){
             steps{
                 sh 'mvn test'
             }
-        }
+        }*/
 
          
         
         
         
-        stage('Nexus'){
+      /*  stage('Nexus'){
             steps{
                 sh 'mvn deploy -DskipTests'
             }
-        }
+        }*/
         
         
        
