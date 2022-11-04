@@ -52,7 +52,7 @@ pipeline{
                 sh 'mvn deploy -DskipTests'
             }
         }
-        stage('Build Docker Image') {
+       /* stage('Build Docker Image') {
             steps {
                 script {
                         sh """ docker build -t nakbiyassine/achat ."""
@@ -60,23 +60,23 @@ pipeline{
                   
                 }
             }
-        }       
+        }       /*
         
-        stage('Login') {
+       /* stage('Login') {
             steps{
                 
                 sh """ docker login -u "nakbiyassine" -p "yassine123@" docker.io  """
             }
-        }
+        }*/
         
         
-        stage('push to DockerHub') {
+     /*   stage('push to DockerHub') {
             steps{
 
                 sh """ docker push  nakbiyassine/achat """
                 
             }
-        }
+        }*/
         
        
       
