@@ -1,0 +1,27 @@
+services:
+  mysql-standalone:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=achatdb
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3306:3306
+
+  achatproject:
+    image: medamine32/achatspring
+    ports:
+      - 8089:8089
+    restart: unless-stopped
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment :
+      -SPRING_DATASOURCE_URL: jdbc:mysql://mysql-standalone:3306/achatdb?autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+      -SPRING_DATASOURCE_USERNAME : root
+      -SPRING_DATASOURCE_PASSWORD : root
+    depends_on:
+      - mysql-standalone
+    links:
+      - mysql-standalone:mysql-standalone
+    
