@@ -18,15 +18,14 @@ public class SecteurActiviteServiceImpl implements ISecteurActiviteService{
 	}
 
 	@Override
-	public SecteurActivite addSecteurActivite(SecteurActivite sa) {
-		secteurActiviteRepository.save(sa);
-		return sa;
+	public SecteurActivite addSecteurActivite(SecteurActivite saa) {
+		secteurActiviteRepository.save(saa);
+		return saa;
 	}
 
 	@Override
 	public void deleteSecteurActivite(Long id) {
 		secteurActiviteRepository.deleteById(id);
-		
 	}
 
 	@Override
@@ -37,8 +36,7 @@ public class SecteurActiviteServiceImpl implements ISecteurActiviteService{
 
 	@Override
 	public SecteurActivite retrieveSecteurActivite(Long id) {
-		SecteurActivite secteurActivite = secteurActiviteRepository.findById(id).orElse(null);
-		return secteurActivite;
+		return secteurActiviteRepository.findById(id).orElse(null);
 	}
 
 }
