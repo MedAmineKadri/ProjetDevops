@@ -24,8 +24,8 @@ environment {
                       }
         stage("MVN Clean + Compile + Package"){
                                 steps{
-                                            sh 'mvn clean',
-                                            sh 'mvn compile',
+                                            sh 'mvn clean'
+                                            sh 'mvn compile'
                                             sh 'mvn package'
                                 }
                         }
