@@ -92,21 +92,21 @@ environment {
                         success {
                             mail to: "rafed.chraiti@esprit.tn",
                             body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n, More info at: ${env.BUILD_URL}",
-                            from: 'mahdi.arfaoui1@esprit.tn',
+                            from: 'rafed.chraiti@esprit.tn',
                             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
                         }
 
                         failure{
                             mail to: "rafed.chraiti@esprit.tn",
                             subject: "Jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-                            from: 'mahdi.arfaoui1@esprit.tn',
+                            from: 'rafed.chraiti@esprit.tn',
                             body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
                         }
 
                         changed{
                             mail to: "rafed.chraiti@esprit.tn",
                             subject: "Jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-                            from: 'mahdi.arfaoui1@esprit.tn',
+                            from: 'rafed.chraiti@esprit.tn',
                             body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
                         }
                     }

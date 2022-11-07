@@ -36,7 +36,7 @@ public class FactureServiceImplTest {
 
 
 
-   /*@Test
+   @Test
     public void testAddFacture () throws  ParseException  {
         Facture f = new Facture(20f,200f, new Date(10 / 10 / 2020),new Date(10 / 10 / 2022), true);
         Facture savedFactrure= factureService.addFacture(f);
@@ -74,8 +74,8 @@ public class FactureServiceImplTest {
 			Assertions.assertEquals(20f,savedFactrure.getMontantRemise());
 			assertEquals(new Date(10 / 10 / 2022),savedFactrure.getDateCreationFacture());
 			log.info("get ===>" + factureService.toString());
-	}*/
-	@Test
+	}
+	/*@Test
 	public void testgetFacturesByFournisseur() throws ParseException  {
 		Facture f = new Facture(20f,200f, new Date(10 / 10 / 2020),new Date(10 / 10 / 2022), true);
 		Facture savedFactrure= factureService.addFacture(f);
@@ -90,7 +90,7 @@ public class FactureServiceImplTest {
 		log.info(" facture: " + facture.getMontantFacture()+ " né le "+facture.getMontantRemise());
 		}
 	}
-/*
+
 	@Test
 	public void testassignOperateurToFacture() throws ParseException{
 		Facture f = new Facture(1L,20f,200f, new Date(10 / 10 / 2020),new Date(10 / 10 / 2022), true);
