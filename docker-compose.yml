@@ -1,27 +1,37 @@
+version: "3.3"
+
 services:
-  mysql-standalone:
-    image: mysql:latest
+  mysqldb:
+    image: mysql:5.7
+    restart: unless-stopped
+    env_file: ./.env
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=achatdb
-      - MYSQL_PASSWORD=root
     ports:
       - 3306:3306
-
-  achatproject:
-    image: medamine32/achatspring
+    volumes:
+      - db:/var/lib/mysql
+  app:
+    depends_on:
+      - mysqldb
+    build: .
+    restart: on-failure
+    env_file: ./.env
     ports:
       - 8089:8089
-    restart: unless-stopped
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    environment :
-      -SPRING_DATASOURCE_URL: jdbc:mysql://mysql-standalone:3306/achatdb?autoReconnect=true&failOverReadOnly=false&maxReconnects=10
-      -SPRING_DATASOURCE_USERNAME : root
-      -SPRING_DATASOURCE_PASSWORD : root
-    depends_on:
-      - mysql-standalone
-    links:
-      - mysql-standalone:mysql-standalone
-    
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysqldb:$MYSQLDB_DOCKER_PORT/$MYSQLDB_DATABASE?useSSL=false",
+        "spring.datasource.username" : "$MYSQLDB_USER",
+        "spring.datasource.password" : "$MYSQLDB_ROOT_PASSWORD",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
