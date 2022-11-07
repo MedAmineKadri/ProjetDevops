@@ -45,17 +45,17 @@ environment {
                                     sh 'mvn package'
                                 }
         }*/
-        /*stage("Test JUnit - Mockito"){
+        stage("Test JUnit - Mockito"){
                                 steps {
                                     sh 'mvn test'
                                 }
-        }*/
-        /*stage('SonarQube CodeQuality'){
+        }
+        stage('SonarQube CodeQuality'){
                                 steps{
                                     sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=41120725'
                                 }
         }
-        stage("NEXUS"){
+        /*stage("NEXUS"){
                        steps{
                                sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0.5 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.147:8081/repository/maven-releases -Dfile=target/devopsproject.jar'
                                }
