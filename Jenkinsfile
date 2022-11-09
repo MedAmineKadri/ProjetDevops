@@ -58,6 +58,12 @@ pipeline {
                                sh "docker rmi $registry:$BUILD_NUMBER"
                      }
                }
+               stage("nexus deploy"){
+                                       steps {
+                                          sh 'mvn deploy'
+
+                                             }
+                                }
                 stage("docker compose"){
                                                                     steps {
                                                                         sh 'mvn clean package'
@@ -69,11 +75,6 @@ pipeline {
 
                                           }
 
-            stage("nexus deploy"){
-                        steps {
-                           sh 'mvn deploy'
 
-                              }
-                 }
                              }
                              }
