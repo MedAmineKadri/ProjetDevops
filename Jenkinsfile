@@ -31,6 +31,19 @@ pipeline {
             steps {
                 sh 'mvn verify -DskipUnitTests'
             }
+        }
+         stage('StaticAnalytic') {
+            steps {
+               script{
+                    withSonarQubeEnv(credentialsId: 'sonar-api-key') {
+                         sh """mvn sonar:sonar -DskipTests \
+                            -Dsonar.language=java 
+                           
+                            
+                        """
+                    }
+                }
+            }
         }    
     }     
 }
