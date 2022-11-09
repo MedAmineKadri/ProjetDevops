@@ -17,15 +17,25 @@ pipeline {
                     url : 'https://github.com/MedAmineKadri/ProjetDevops.git';
                              }
                              }
-                                   stage("Build"){
-                                        steps {
-                                                 sh 'mvn clean package'
-                                                  sh 'mvn install package'
+         stage('Testing maven') {
+                    steps {
+                        sh """mvn -version"""
 
+                    }
+                }
 
-                                               }
+                stage('Mvn Clean') {
+                    steps {
+                        sh 'mvn clean'
 
-                                       }
+                    }
+                }
+                stage('Mvn Compile') {
+                    steps {
+                        sh 'mvn compile'
+
+                    }
+                }
 
       stage('Building our image') {
                   steps {
@@ -60,13 +70,13 @@ pipeline {
                }
                stage("nexus deploy"){
                                        steps {
-                                          sh 'mvn deploy'
+                                          sh 'mvn deploy -DskipTests'
 
                                              }
                                 }
                                   stage('SonarQube analysis 1') {
                                             steps {
-                                                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=FatenMohamed97'
+                                                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=203JMT4407'
                                             }
                                         }
                 stage("docker compose"){
