@@ -64,14 +64,15 @@ pipeline {
 
                                              }
                                 }
+                                  stage('SonarQube analysis 1') {
+                                            steps {
+                                                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=FatenMohamed97'
+                                            }
+                                        }
                 stage("docker compose"){
-                                                                    steps {
-                                                                        sh 'mvn clean package'
-                                                                       // sh 'sudo chmod 666 /var/run/docker.sock'
-                                                                        sh 'docker-compose up -d --build'
-
-
-                                                                    }
+                                         steps {
+                                                           sh "docker-compose -f docker-compose.yml up -d  "
+                                                       }
 
                                           }
 
