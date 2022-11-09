@@ -22,10 +22,9 @@ environment {
                                            }
                                         }
                       }
-        stage("MVN Clean + Compile + Package"){
+        stage("MVN Clean + Package"){
                                 steps{
                                             sh 'mvn clean'
-                                            sh 'mvn compile'
                                             sh 'mvn package'
                                 }
                         }
@@ -57,7 +56,7 @@ environment {
         }
         stage("NEXUS"){
                        steps{
-                               sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.149:8081//repository/achatintegration -Dfile=target/devopsproject.jar'
+                               sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.150:8081//repository/maven-releases -Dfile=target/devopsproject.jar'
                                }
         }
         stage('Building our image') {
