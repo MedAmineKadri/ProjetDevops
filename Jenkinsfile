@@ -36,23 +36,24 @@ pipeline {
 
                     }
                 }
-               stage("nexus deploy"){
-                                       steps {
-                                          sh 'mvn deploy -DskipTests'
+         stage('SonarQube analysis 1') {
+                                                                     steps {
+                                                                         sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=203JMT4407'
+                                                                     }
+                                                                 }
+                                         stage("docker compose"){
+                                                                  steps {
+                                                                                    sh "docker-compose -f docker-compose.yml up -d  "
+                                                                                }
 
-                                             }
-                                }
-                                  stage('SonarQube analysis 1') {
-                                            steps {
-                                                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=203JMT4407'
-                                            }
-                                        }
-                stage("docker compose"){
-                                         steps {
-                                                           sh "docker-compose -f docker-compose.yml up -d  "
-                                                       }
+                                                                   }
+                stage("nexus deploy"){
+                                                       steps {
+                                                          sh 'mvn deploy'
 
-                                          }
+                                                             }
+                                                }
+
          stage('Building our image') {
                            steps {
                                  script {
