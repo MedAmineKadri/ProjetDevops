@@ -36,14 +36,6 @@ pipeline {
 
                     }
                 }
-
-
-
-               stage('Cleaning up') {
-                     steps {
-                               sh "docker rmi $registry:$BUILD_NUMBER"
-                     }
-               }
                stage("nexus deploy"){
                                        steps {
                                           sh 'mvn deploy -DskipTests'
@@ -86,6 +78,11 @@ pipeline {
                                                    }
 
                               }
+                              stage('Cleaning up') {
+                                                   steps {
+                                                             sh "docker rmi $registry:$BUILD_NUMBER"
+                                                   }
+                                             }
 
 
                              }
