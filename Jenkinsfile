@@ -11,5 +11,14 @@ pipeline {
                     url : 'https://github.com/MedAmineKadri/ProjetDevops.git';
                              }
                              }
+                                   stage("Build"){
+                                        steps {
+                                                 sh 'mvn clean package'
+                                                  sh 'mvn install package'
+
+
+                                               }
+
+                                       }
                              }
                              }
