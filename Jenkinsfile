@@ -31,6 +31,31 @@ pipeline {
                            }
 
                    }
+         stage('Building our image') {
+                                   steps {
+                                         script {
+                                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
+
+                                          }
+                                        }
+                                       }
+                                      stage('Deploy our image') {
+
+                                    steps {
+
+                                       script {
+
+                                           docker.withRegistry( '', registryCredential ) {
+
+                                               dockerImage.push()
+
+                                                 }
+
+                                                   }
+
+                                                           }
+
+                                      }
                    stage("docker compose"){
                                       steps {
                                                sh "docker-compose -f docker-compose.yml up -d  "
