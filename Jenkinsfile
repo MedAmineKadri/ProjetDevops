@@ -22,13 +22,15 @@ pipeline {
                     url : 'https://github.com/MedAmineKadri/ProjetDevops.git';
                              }
                              }
-         stage("Build"){
+          stage("Build"){
                     steps {
                              sh 'mvn clean package'
                               sh 'mvn install package'
 
 
                            }
+
+                   }
          stage('SonarQube analysis 1') {
                   steps {
                               sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=203JMT4407'
