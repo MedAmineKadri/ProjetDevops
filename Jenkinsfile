@@ -32,7 +32,7 @@ pipeline {
                 sh 'mvn verify -DskipUnitTests'
             }
         }
-         /* stage('StaticAnalytic') {
+          stage('StaticAnalytic') {
             steps {
                script{
                     withSonarQubeEnv(credentialsId: 'sonar-key-class') {
@@ -66,7 +66,7 @@ pipeline {
                 }
                 
             }
-        } */
+        } 
          stage('Docker Image') {
             steps {
                 script{
