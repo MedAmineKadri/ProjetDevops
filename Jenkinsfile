@@ -45,7 +45,7 @@ pipeline {
                 }
             }
         } 
-        stage('upload war file to nexus') {
+        /* stage('upload war file to nexus') {
             steps {
                 script{
                     nexusArtifactUploader artifacts:
@@ -91,6 +91,6 @@ pipeline {
             steps {
                 sh 'docker-compose up -d --build'
             }
-        }     
+        }      */
     }     
 }
