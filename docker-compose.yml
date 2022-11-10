@@ -9,7 +9,7 @@ services:
     ports:
       - "3307:3306"
   springboot-docker-container:
-    image: bilelgasmi/achat
+    image: bilelgasmi/achatpipeline
     ports:
       - "8089:8089"
     environment:
