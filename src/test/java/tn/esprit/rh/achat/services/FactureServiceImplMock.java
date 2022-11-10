@@ -1,6 +1,5 @@
 package tn.esprit.rh.achat.services;
 
-import static org.junit.Assert.assertEquals;
 
 import tn.esprit.rh.achat.entities.DetailFacture;
 import tn.esprit.rh.achat.entities.Facture;

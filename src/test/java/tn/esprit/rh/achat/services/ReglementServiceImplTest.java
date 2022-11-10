@@ -4,7 +4,7 @@ package tn.esprit.rh.achat.services;
 
 import tn.esprit.rh.achat.entities.Reglement;
 import tn.esprit.rh.achat.repositories.ReglementRepository;
-import lombok.extern.slf4j.Slf4j;
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Slf4j
+
 public class ReglementServiceImplTest {
     @Mock
     ReglementRepository reglementRepository;
@@ -53,7 +53,7 @@ public class ReglementServiceImplTest {
     void testAddReglement() {
         Mockito.when(reglementRepository.save(r)).thenReturn(r);
         Reglement f = reglementService.addReglement(r);
-        log.info("REGLEMENT =====> : " + f);
+
         assertNotNull(f);
     }
 

@@ -1,6 +1,6 @@
 package tn.esprit.rh.achat.services;
 
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.rh.achat.entities.Produit;
@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@Slf4j
+
 public class ProduitServiceImpl implements IProduitService {
 
 	@Autowired
@@ -26,9 +26,7 @@ public class ProduitServiceImpl implements IProduitService {
 	@Override
 	public List<Produit> retrieveAllProduits() {
 		List<Produit> produits = (List<Produit>) produitRepository.findAll();
-		for (Produit produit : produits) {
-			log.info(" Produit : " + produit);
-		}
+
 		return produits;
 	}
 
@@ -53,7 +51,7 @@ public class ProduitServiceImpl implements IProduitService {
 	@Override
 	public Produit retrieveProduit(Long produitId) {
 		Produit produit = produitRepository.findById(produitId).orElse(null);
-		log.info("produit :" + produit);
+
 		return produit;
 	}
 

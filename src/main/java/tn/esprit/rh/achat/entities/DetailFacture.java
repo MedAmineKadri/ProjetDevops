@@ -25,7 +25,11 @@ public class DetailFacture implements Serializable {
 	@ManyToOne
 	@JsonIgnore
 	Facture facture;
-	public Long getIdDetailFacture() {
+
+    public DetailFacture(long l, int i, int i1, int i2, int i3, Object o, Object o1) {
+    }
+
+    public Long getIdDetailFacture() {
 		return idDetailFacture;
 	}
 	public void setIdDetailFacture(Long idDetailFacture) {

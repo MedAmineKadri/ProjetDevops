@@ -29,7 +29,11 @@ public class Reglement implements Serializable{
 	@ManyToOne
 	@JsonIgnore
 	private Facture facture;
-	public Long getIdReglement() {
+
+    public Reglement(int i, int i1, boolean b, Date date) {
+    }
+
+    public Long getIdReglement() {
 		return idReglement;
 	}
 	public void setIdReglement(Long idReglement) {

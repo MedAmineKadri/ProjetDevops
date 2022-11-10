@@ -1,11 +1,10 @@
 package tn.esprit.rh.achat.services;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.rh.achat.entities.*;
 import tn.esprit.rh.achat.repositories.*;
-import lombok.extern.slf4j.Slf4j;
+
 
 
 import javax.transaction.Transactional;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-@Slf4j
+
 @Transactional
 public class FactureServiceImpl implements IFactureService {
 
@@ -34,9 +33,7 @@ public class FactureServiceImpl implements IFactureService {
 	@Override
 	public List<Facture> retrieveAllFactures() {
 		List<Facture> factures = (List<Facture>) factureRepository.findAll();
-		for (Facture facture : factures) {
-			log.info(" facture : " + facture);
-		}
+
 		return factures;
 	}
 
@@ -88,7 +85,7 @@ public class FactureServiceImpl implements IFactureService {
 	public Facture retrieveFacture(Long factureId) {
 
 		Facture facture = factureRepository.findById(factureId).orElse(null);
-		log.info("facture :" + facture);
+
 		return facture;
 	}
 
