@@ -1,6 +1,5 @@
 package tn.esprit.rh.achat.services;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.rh.achat.entities.Stock;
@@ -11,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@Slf4j
 public class StockServiceImpl implements IStockService {
 
 	@Autowired
@@ -21,12 +19,12 @@ public class StockServiceImpl implements IStockService {
 	@Override
 	public List<Stock> retrieveAllStocks() {
 		// récuperer la date à l'instant t1
-		log.info("In method retrieveAllStocks");
+		//log.info("In method retrieveAllStocks");
 		List<Stock> stocks = (List<Stock>) stockRepository.findAll();
 		for (Stock stock : stocks) {
-			log.info(" Stock : " + stock);
+			//log.info(" Stock : " + stock);
 		}
-		log.info("out of method retrieveAllStocks");
+		//log.info("out of method retrieveAllStocks");
 		// récuperer la date à l'instant t2
 		// temps execution = t2 - t1
 		return stocks;
@@ -35,32 +33,32 @@ public class StockServiceImpl implements IStockService {
 	@Override
 	public Stock addStock(Stock s) {
 		// récuperer la date à l'instant t1
-		log.info("In method addStock");
+		//log.info("In method addStock");
 		return stockRepository.save(s);
 		
 	}
 
 	@Override
 	public void deleteStock(Long stockId) {
-		log.info("In method deleteStock");
+		//log.info("In method deleteStock");
 		stockRepository.deleteById(stockId);
 
 	}
 
 	@Override
 	public Stock updateStock(Stock s) {
-		log.info("In method updateStock");
+		//log.info("In method updateStock");
 		return stockRepository.save(s);
 	}
 
 	@Override
 	public Stock retrieveStock(Long stockId) {
 		long start = System.currentTimeMillis();
-		log.info("In method retrieveStock");
+		//log.info("In method retrieveStock");
 		Stock stock = stockRepository.findById(stockId).orElse(null);
-		log.info("out of method retrieveStock");
+		//log.info("out of method retrieveStock");
 		 long elapsedTime = System.currentTimeMillis() - start;
-		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+		//log.info("Method execution time: " + elapsedTime + " milliseconds.");
 
 		return stock;
 	}
@@ -80,7 +78,6 @@ public class StockServiceImpl implements IStockService {
 					+ newLine;
 
 		}
-		log.info(finalMessage);
 		return finalMessage;
 	}
 

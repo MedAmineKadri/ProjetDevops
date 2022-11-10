@@ -1,6 +1,5 @@
 package tn.esprit.rh.achat.services;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.rh.achat.entities.DetailFournisseur;
@@ -15,7 +14,6 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@Slf4j
 public class FournisseurServiceImpl implements IFournisseurService {
 
 	@Autowired
@@ -30,16 +28,14 @@ public class FournisseurServiceImpl implements IFournisseurService {
 	@Override
 	public List<Fournisseur> retrieveAllFournisseurs() {
 		List<Fournisseur> fournisseurs = (List<Fournisseur>) fournisseurRepository.findAll();
-		for (Fournisseur fournisseur : fournisseurs) {
-			log.info(" fournisseur : " + fournisseur);
-		}
+
 		return fournisseurs;
 	}
 
 
 	public Fournisseur addFournisseur(Fournisseur f /*Master*/) {
 		DetailFournisseur df= new DetailFournisseur();//Slave
-		df.setDateDebutCollaboration(new Date()); //util
+		//df.setDateDebutCollaboration(new Date()); //util
 		//On affecte le "Slave" au "Master"
 		f.setDetailFournisseur(df);	
 		fournisseurRepository.save(f);
