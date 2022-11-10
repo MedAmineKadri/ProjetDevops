@@ -70,9 +70,9 @@ pipeline {
          stage('Docker Image') {
             steps {
                 script{
-                    sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
-                    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID bilelgasmi/$JOB_NAME:v1.$BUILD_ID'
-                    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID bilelgasmi/$JOB_NAME:latest'
+                    sh 'docker image build -t achatpipeline:v1.$BUILD_ID .'
+                    sh 'docker image tag achatpipeline:v1.$BUILD_ID bilelgasmi/achatpipeline:v1.$BUILD_ID'
+                    sh 'docker image tag achatpipeline:v1.$BUILD_ID bilelgasmi/achatpipeline:latest'
                 }
             }
         }
@@ -81,8 +81,8 @@ pipeline {
                 script{
                     withCredentials([string(credentialsId: 'dockerhub_Cred_pass', variable: 'dockerhub_cred')]) {
                         sh 'docker login -u bilelgasmi -p ${dockerhub_cred}'
-                        sh 'docker image push bilelgasmi/$JOB_NAME:v1.$BUILD_ID'
-                        sh 'docker image push bilelgasmi/$JOB_NAME:latest'
+                        sh 'docker image push bilelgasmi/achatpipeline:v1.$BUILD_ID'
+                        sh 'docker image push bilelgasmi/achatpipeline:latest'
                     }
                 }    
             }
