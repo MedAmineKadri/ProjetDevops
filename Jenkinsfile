@@ -3,6 +3,11 @@ pipeline {
            {    registry = "mohamedghf/devopsprojet"
                 registryCredential = 'docker_id'
                 dockerImage = ''
+                 NEXUS_VERSION="nexus3"
+                 NEXUS_PROTOCOL="http"
+                 NEXUS_URL="192.168.33.10:8081"
+                 NEXUS_REPOSITORY="maven-snapshots"
+                 NEXUS_CREDENTIAL_ID="nexus-user-credentials"
 
 
             }
@@ -17,41 +22,29 @@ pipeline {
                     url : 'https://github.com/MedAmineKadri/ProjetDevops.git';
                              }
                              }
-         stage('Testing maven') {
+         stage("Build"){
                     steps {
-                        sh """mvn -version"""
+                             sh 'mvn clean package'
+                              sh 'mvn install package'
 
-                    }
-                }
 
-                stage('Mvn Clean') {
-                    steps {
-                        sh 'mvn clean'
-
-                    }
-                }
-                stage('Mvn Compile') {
-                    steps {
-                        sh 'mvn compile'
-
-                    }
-                }
+                           }
          stage('SonarQube analysis 1') {
-                                                                     steps {
-                                                                         sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=203JMT4407'
-                                                                     }
-                                                                 }
-                                         stage("docker compose"){
-                                                                  steps {
-                                                                                    sh "docker-compose -f docker-compose.yml up -d  "
-                                                                                }
+                  steps {
+                              sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=203JMT4407'
+                            }
+                            }
+          stage("docker compose"){
+                   steps {
+                            sh "docker-compose -f docker-compose.yml up -d  "
+                                  }
 
-                                                                   }
-                stage("nexus deploy"){
-                                                       steps {
-                                                          sh 'mvn deploy'
+                                        }
+          stage("nexus deploy"){
+                    steps {
+                                  sh 'mvn deploy'
 
-                                                             }
+                                          }
                                                 }
 
          stage('Building our image') {
